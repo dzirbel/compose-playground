@@ -40,12 +40,14 @@ fun App() {
                 TextField(
                     value = textFieldValue1,
                     onValueChange = { textFieldValue1 = it },
+                    singleLine = true,
                 )
 
                 var textFieldValue2 by remember { mutableStateOf("") }
                 TextField(
                     value = textFieldValue2,
                     onValueChange = { textFieldValue2 = it },
+                    singleLine = true,
                 )
 
                 Button(onClick = { /* no-op */ }) {

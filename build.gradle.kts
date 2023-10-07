@@ -1,24 +1,28 @@
 plugins {
     kotlin("jvm") version "1.9.10"
-    id("org.jetbrains.compose") version "1.5.3"
+    jacoco
 }
 
 repositories {
-    google()
     mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 dependencies {
-    implementation(compose.desktop.currentOs)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-compose.desktop {
-    application {
-        mainClass = "MainKt"
-        nativeDistributions {
-            packageName = "compose-playground"
-            packageVersion = "1.0.0"
-        }
-    }
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports.xml.required = true
+}
+
+jacoco {
+    toolVersion = "0.8.10"
 }

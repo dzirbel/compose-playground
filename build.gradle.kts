@@ -1,3 +1,5 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 plugins {
     kotlin("jvm") version "1.9.10"
     id("org.jetbrains.compose") version "1.5.3"
@@ -19,6 +21,7 @@ compose.desktop {
         nativeDistributions {
             packageName = "compose-playground"
             packageVersion = "1.0.0"
+            targetFormats(TargetFormat.Dmg, TargetFormat.Pkg)
         }
     }
 }
